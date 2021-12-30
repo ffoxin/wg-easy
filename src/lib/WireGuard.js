@@ -95,7 +95,7 @@ ListenPort = 51820`;
 [Peer]
 PublicKey = ${client.publicKey}
 PresharedKey = ${client.preSharedKey}
-AllowedIPs = ${client.address}/32`;
+AllowedIPs = ${client.allowedIPs}`;
     }
 
     debug('Saving config...');
@@ -235,6 +235,8 @@ Endpoint = ${WG_HOST}:${WG_PORT}`;
       publicKey,
       preSharedKey,
 
+      allowedIPs: `${address}/32`,
+
       createdAt: new Date(),
       updatedAt: new Date(),
 
@@ -290,6 +292,7 @@ Endpoint = ${WG_HOST}:${WG_PORT}`;
     }
 
     client.address = address;
+    client.allowedIPs = `${address}/32`;
     client.updatedAt = new Date();
 
     await this.saveConfig();
